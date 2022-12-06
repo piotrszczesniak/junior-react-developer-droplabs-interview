@@ -1,8 +1,8 @@
-export const useAuthenticate = (cookie) => {
+export const checkAuthenticate = (cookie) => {
   const cookiesArray = cookie.split('=');
   if (cookiesArray.includes('loginToken')) {
-    return true;
+    return 'loginToken';
   } else {
-    return false;
+    return null;
   }
 };

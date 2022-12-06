@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
-import { useAuthenticate } from '../hooks/useAuthenticate';
+import { checkAuthenticate } from '../utilis/checkAuthenticate';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -25,12 +25,11 @@ const Products = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!checkAuthenticate(x)) {
+      navigate('/login');
+    }
     fetchProducts();
-  }, [products]);
-
-  if (!useAuthenticate(x)) {
-    navigate('/login');
-  }
+  }, [products, x, navigate]);
 
   return (
     <section className='Products'>

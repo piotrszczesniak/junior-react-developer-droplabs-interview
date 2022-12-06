@@ -16,11 +16,16 @@ const Login = () => {
   return (
     <section>
       <h1>Login page</h1>
+      {/* // TODO ! dont understand how this higher order fn works - here we pass data from the form */}
       <form onSubmit={handleSubmit(setUser)}>
         <p>{errors.email?.message}</p>
         <input
           {...register('email', {
             required: 'This field is required',
+            pattern: {
+              value: /^\S+@\S+$/,
+              message: 'Valid email must include @ symbol',
+            },
             minLength: {
               value: 3,
               message: 'Minimum length is 3',
@@ -33,6 +38,7 @@ const Login = () => {
           type='password'
           {...register('password', {
             required: 'This field is required',
+
             minLength: {
               value: 3,
               message: 'Minimum length is 3',
@@ -40,7 +46,7 @@ const Login = () => {
           })}
           placeholder='Your password'
         />
-        <button type='submit'>Login</button>
+        <input type='submit' value='Login' />
         {/* https://react-hook-form.com/get-started#Quickstart */}
       </form>
     </section>
