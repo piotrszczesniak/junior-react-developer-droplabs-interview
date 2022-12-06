@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { UserContext } from "../Contexts/UserContext";
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { UserContext } from '../contexts/UserContext';
 
 // https://youtu.be/RkXv4AXXC_4?t=330
 
@@ -8,48 +8,42 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { setUser } = useContext(UserContext);
 
-  // console.log("errors:", errors);
-
   return (
-    <>
+    <section>
       <h1>Login page</h1>
-      <form
-        onSubmit={handleSubmit((data) => {
-          console.log("data:", data);
-          setUser(data);
-        })}
-      >
+      <form onSubmit={handleSubmit(setUser)}>
         <p>{errors.email?.message}</p>
         <input
-          {...register("email", {
-            required: "This field is required",
+          {...register('email', {
+            required: 'This field is required',
             minLength: {
               value: 3,
-              message: "Minimum lenght is 3"
-            }
+              message: 'Minimum length is 3',
+            },
           })}
-          placeholder="Your email address"
+          placeholder='Your email address'
         />
         <p>{errors.password?.message}</p>
         <input
-          {...register("password", {
-            required: "This field is required",
+          type='password'
+          {...register('password', {
+            required: 'This field is required',
             minLength: {
               value: 3,
-              message: "Minimum lenght is 3"
-            }
+              message: 'Minimum length is 3',
+            },
           })}
-          placeholder="Your password"
+          placeholder='Your password'
         />
-
-        <input type="submit" />
+        <button type='submit'>Login</button>
+        {/* https://react-hook-form.com/get-started#Quickstart */}
       </form>
-    </>
+    </section>
   );
 };
 
