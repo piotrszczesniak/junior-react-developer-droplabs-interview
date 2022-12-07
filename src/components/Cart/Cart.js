@@ -1,14 +1,19 @@
 import React, { useContext, useMemo } from 'react';
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext } from '../CartContextProvider/CartContext';
+import styles from './Cart.module.scss';
+import ShoppingBag from '../../assets/img/shopping-bag.svg';
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
   const cartTotalPrice = useMemo(() => cart.reduce((total, { price }) => total + price, 0), [cart]);
   return (
-    <div>
-      <span>You have {cart.length} products in your cart</span>
-      <span>Total is: {cartTotalPrice} PLN</span>
-    </div>
+    <aside className={styles.cart}>
+      <div>{cartTotalPrice} PLN</div>
+      <div className={styles['cart-wrapper']}>
+        <span className={styles['cart-items']}>{cart.length}</span>
+        <img style={{ height: '30px' }} src={ShoppingBag} alt='shopping bag' />
+      </div>
+    </aside>
   );
 };
 
