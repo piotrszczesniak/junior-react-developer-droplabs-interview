@@ -66,7 +66,7 @@ const Products = () => {
         <Modal isVisible={visible} onModalClose={handleModalClose} product={product} />
         {products.map((product, index) => (
           <div className={styles.product} key={product.id}>
-            <img src={product.image} alt={product.title} width='150' />
+            <img src={product.image} alt={product.title} width='125' />
             <h3>{product.title}</h3>
             <p>{product.price} PLN</p>
             <button onClick={() => handleAddToCart(product.id, product.title, product.price)}>Dodaj do koszyka</button>

@@ -1,11 +1,14 @@
 import styles from './Modal.module.scss';
 import classnames from 'classnames';
+import ModalCloseIcon from '../../assets/img/close-icon.svg';
 
 export default function Modal({ isVisible, onModalClose, product }) {
-  const { price, description, title, category, rating } = product;
+  const { price, description, title, category, rating, image } = product;
 
   return (
     <div className={classnames(styles.modal, { [styles.open]: isVisible })}>
+      <img className={styles['modal-close']} onClick={onModalClose} src={ModalCloseIcon} alt='modal close icon' />
+      <img className={styles['product-image']} src={image} alt={product.title} width='250' />
       <h3>{title}</h3>
       <ul>
         <li>
