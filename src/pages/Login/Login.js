@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import styles from './Login.module.scss';
 
@@ -52,7 +53,9 @@ const Login = () => {
           <button type='submit'>Zaloguj</button>
 
           {isAuthenticated ? (
-            <p className={styles['success-msg']}>Jesteś zalogowany</p>
+            <p className={styles['success-msg']}>
+              Jesteś zalogowany - <Link to='/products'>przeglądaj produkty</Link>.
+            </p>
           ) : (
             <p className={styles['error-msg']}>Żeby przeglądać ofertę produktów zaloguj się proszę.</p>
           )}
