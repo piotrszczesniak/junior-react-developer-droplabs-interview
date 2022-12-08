@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthenticationContext } from '../AuthenticationContextProvider/AuthenticationContext';
 import PolishFlag from '../../assets/img/polish-flag.svg';
-import HamnburgerMenu from '../../assets/img/hamburger-menu.svg';
+import MobileMenuOpen from '../../assets/img/hamburger-menu.svg';
+import MobileMenuClose from '../../assets/img/close-icon.svg';
 import classNames from 'classnames';
 
 import styles from './Navbar.module.scss';
@@ -20,29 +21,28 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }) => {
 
       <img
         className={classNames(styles['mobile-menu'])}
-        src={HamnburgerMenu}
-        style={{ height: '20px' }}
+        src={!isMobileMenuOpen ? MobileMenuOpen : MobileMenuClose}
         alt='mobile menu'
         onClick={onMobileMenuClick}
       />
       <div className={classNames(styles['menu-wrapper'], { [styles['mobile']]: isMobileMenuOpen })}>
-        <Link className={styles.link} to='/'>
+        <Link className={styles.link} to='/' onClick={isMobileMenuOpen && onMobileMenuClick}>
           Strona główna
         </Link>
-        <Link className={styles.link} to='/products'>
+        <Link className={styles.link} to='/products' onClick={isMobileMenuOpen && onMobileMenuClick}>
           Produkty
         </Link>
-        <Link className={styles.link} to='/about'>
+        <Link className={styles.link} to='/about' onClick={isMobileMenuOpen && onMobileMenuClick}>
           O sklepie
         </Link>
-        <Link className={styles.link} to='/locations'>
+        <Link className={styles.link} to='/locations' onClick={isMobileMenuOpen && onMobileMenuClick}>
           Sklepy stacjonarne
         </Link>
-        <Link className={styles.link} to='/contact'>
+        <Link className={styles.link} to='/contact' onClick={isMobileMenuOpen && onMobileMenuClick}>
           Kontakt
         </Link>
-        <Link className={styles.link}>
-          <img src={PolishFlag} style={{ height: '20px', border: '1px solid red' }} alt='language selector' />
+        <Link className={styles.link} onClick={isMobileMenuOpen && onMobileMenuClick}>
+          <img src={PolishFlag} style={{ height: '1rem', border: '1px solid red' }} alt='language selector' />
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }) => {
 
       {!isAuthenticated && (
         <div className={styles['login-wrapper']}>
-          <Link className={styles.link} to='/login'>
+          <Link className={styles.link} to='/login' onClick={isMobileMenuOpen && onMobileMenuClick}>
             Zaloguj
           </Link>
         </div>

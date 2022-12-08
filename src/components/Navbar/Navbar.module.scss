@@ -8,19 +8,28 @@
   align-items: center;
 
   .logo {
+    &-wrapper {
+      @media (max-width: 900px) {
+        flex-grow: 1;
+      }
+    }
+
     font-size: 1.5rem;
     font-weight: 700;
     color: red;
     text-decoration: none;
     padding: 1rem;
+    flex-grow: 0;
   }
 
   .mobile-menu {
     display: none;
 
     @media (max-width: 900px) {
+      height: 1.75rem;
       display: block;
       cursor: pointer;
+      margin-right: 0.5rem;
     }
   }
 
@@ -33,7 +42,7 @@
       display: none;
 
       &.mobile {
-        position: absolute;
+        position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
@@ -51,8 +60,20 @@
     }
   }
 
+  .login-wrapper {
+    @media (max-width: 900px) {
+      margin-right: 1rem;
+    }
+  }
+
   .link {
     padding: 0.5rem;
     text-decoration: none;
+
+    &:hover {
+      background-color: red;
+      color: white;
+      border-radius: 4px;
+    }
   }
 }

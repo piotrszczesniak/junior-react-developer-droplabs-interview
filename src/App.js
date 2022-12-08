@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { Products } from './pages/Products/Products';
 import { ErrorPage } from './pages/ErrorPage';
-import { Login } from './pages/Login';
+import { Login } from './pages/Login/Login';
 import { Contact } from './pages/Contact';
 import { About } from './pages/About';
 import { Locations } from './pages/Locations';
@@ -13,17 +13,17 @@ import { Cart } from './components/Cart/Cart';
 import { useState } from 'react';
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const toggleMobileMenu = () => {
-    setOpen(!open);
+    setOpenMenu(!openMenu);
   };
 
   return (
     <Router>
       <CartContextProvider>
         <AuthenticationContextProvider>
-          <Navbar onMobileMenuClick={toggleMobileMenu} isMobileMenuOpen={open} />
+          <Navbar onMobileMenuClick={toggleMobileMenu} isMobileMenuOpen={openMenu} />
           <Cart />
           <Routes>
             <Route index element={<Home />} />
