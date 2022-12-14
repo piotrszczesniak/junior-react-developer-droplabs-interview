@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
 import Modal from '../../components/Modal/Modal';
@@ -12,7 +12,7 @@ const Products = () => {
 
   const { setCart } = useContext(CartContext);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products`);
       const data = await response.json();
@@ -20,7 +20,7 @@ const Products = () => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, []);
 
   const handleAddToCart = (id, title, price) => {
     setCart((cart) => [...cart, { id, title, price }]);
@@ -55,7 +55,7 @@ const Products = () => {
     }
 
     fetchProducts();
-  }, [products, navigate]);
+  }, [navigate, fetchProducts]);
 
   return (
     <main className='product-page'>

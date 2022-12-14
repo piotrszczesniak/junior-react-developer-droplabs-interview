@@ -11,7 +11,6 @@ const AuthenticationContextProvider = ({ children }) => {
     setUser(data);
     const loginToken = 'EDnrQ(vG}!7&*]P';
     document.cookie = `loginToken=${loginToken}`;
-    // const token = jwt.sign({ id: data.id }, "secret")
 
     // jwt.sing... // TODO: if time allows use jwt package to generate a token https://www.npmjs.com/package/jsonwebtoken
   }, []);
