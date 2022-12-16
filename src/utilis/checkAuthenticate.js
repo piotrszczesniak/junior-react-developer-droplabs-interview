@@ -1,7 +1,7 @@
-export const checkAuthenticate = () => {
+export const checkAuthenticate = (cookieName) => {
   return document.cookie
     .split('; ')
-    .find((row) => row.startsWith('loginToken='))
+    .find((row) => row.startsWith(`${cookieName}=`))
     ?.split('=')[1];
 };
 

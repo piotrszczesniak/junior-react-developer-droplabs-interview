@@ -1,10 +1,8 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import styles from './Login.module.scss';
-
-// https://youtu.be/RkXv4AXXC_4?t=330
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const {
@@ -14,6 +12,10 @@ const Login = () => {
   } = useForm();
 
   const { authenticate, isAuthenticated } = useContext(AuthenticationContext);
+
+  if (isAuthenticated) {
+    return <Navigate to='/products' />;
+  }
 
   return (
     <main className='login-page'>
@@ -52,13 +54,7 @@ const Login = () => {
           />
           <button type='submit'>Zaloguj</button>
 
-          {isAuthenticated ? (
-            <p className={styles['success-msg']}>
-              Jesteś zalogowany - <Link to='/products'>przeglądaj produkty</Link>.
-            </p>
-          ) : (
-            <p className={styles['error-msg']}>Żeby przeglądać ofertę produktów zaloguj się proszę.</p>
-          )}
+          {!isAuthenticated && <p className={styles['error-msg']}>Żeby przeglądać ofertę produktów zaloguj się proszę.</p>}
         </form>
       </section>
     </main>

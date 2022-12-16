@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
 import Modal from '../../components/Modal/Modal';
-import { checkAuthenticate } from '../../utilis/checkAuthenticate';
+// import { checkAuthenticate } from '../../utilis/checkAuthenticate';
 import styles from './Products.module.scss';
+import { Navigate } from 'react-router-dom';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ const Products = () => {
   const [visible, setVisible] = useState(false);
 
   const { setCart } = useContext(CartContext);
+  const { isAuthenticated } = useContext(AuthenticationContext);
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -36,8 +38,6 @@ const Products = () => {
     setProduct([]);
   };
 
-  const navigate = useNavigate();
-
   const fetchSingleProduct = async (id) => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -49,13 +49,15 @@ const Products = () => {
   };
 
   useEffect(() => {
-    if (!checkAuthenticate()) {
-      navigate('/login');
-      return;
-    }
+    // if (!checkAuthenticate()) {
+    //   navigate('/login');
+    //   return;
+    // }
 
     fetchProducts();
-  }, [navigate, fetchProducts]);
+  }, [fetchProducts]);
+
+  if (!isAuthenticated) return <Navigate to='/login' />;
 
   return (
     <main className='product-page'>

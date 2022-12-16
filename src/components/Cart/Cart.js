@@ -8,7 +8,7 @@ const Cart = () => {
   const cartTotalPrice = useMemo(() => cart.reduce((total, { price }) => total + price, 0), [cart]);
   return (
     <aside className={styles.cart}>
-      <div>{cartTotalPrice} PLN</div>
+      <div>{cartTotalPrice.toFixed(2)} PLN</div>
       <div className={styles['cart-wrapper']}>
         <span className={styles['cart-items']}>{cart.length}</span>
         <img style={{ height: '30px' }} src={ShoppingBag} alt='shopping bag' />

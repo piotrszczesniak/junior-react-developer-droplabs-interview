@@ -11,8 +11,6 @@ const AuthenticationContextProvider = ({ children }) => {
     setUser(data);
     const loginToken = 'EDnrQ(vG}!7&*]P';
     document.cookie = `loginToken=${loginToken}`;
-
-    // jwt.sing... // TODO: if time allows use jwt package to generate a token https://www.npmjs.com/package/jsonwebtoken
   }, []);
 
   const logout = useCallback(() => {
@@ -21,7 +19,13 @@ const AuthenticationContextProvider = ({ children }) => {
     document.cookie = 'loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
   }, [setCart]);
 
-  const isAuthenticated = checkAuthenticate() && user;
+  let isAuthenticated;
+
+  if (user && checkAuthenticate('loginToken')) {
+    isAuthenticated = true;
+  } else {
+    isAuthenticated = false;
+  }
 
   const userValue = useMemo(() => ({ user, authenticate, logout, isAuthenticated }), [user, authenticate, logout, isAuthenticated]);
 
