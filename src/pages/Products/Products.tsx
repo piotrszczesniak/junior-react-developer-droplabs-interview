@@ -6,9 +6,22 @@ import Modal from '../../components/Modal/Modal';
 import styles from './Products.module.scss';
 import { Navigate } from 'react-router-dom';
 
+import { CartType, ProductType } from '../../types/types';
+
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [product, setProduct] = useState<ProductType>({
+    id: 1,
+    title: '',
+    price: 0,
+    description: '',
+    image: '',
+    category: '',
+    rating: {
+      rate: '',
+      count: 0,
+    },
+  });
   const [visible, setVisible] = useState(false);
 
   const { setCart } = useContext(CartContext);
@@ -24,21 +37,23 @@ const Products = () => {
     }
   }, []);
 
-  const handleAddToCart = (id, title, price) => {
-    setCart((cart) => [...cart, { id, title, price }]);
+  const handleAddToCart = (id: Pick<CartType, 'id'>, title: Pick<CartType, 'title'>, price: Pick<CartType, 'price'>) => {
+    setCart((cart: CartType) => [...[cart], { id, title, price }]);
   };
 
-  const handleOpenModal = (id) => {
+  const handleOpenModal = (id: Pick<CartType, 'id'>) => {
     fetchSingleProduct(id);
     setVisible(true);
   };
 
   const handleModalClose = () => {
     setVisible(false);
-    setProduct([]);
+
+    // * not sure if this is needed at all?
+    // setProduct([]);
   };
 
-  const fetchSingleProduct = async (id) => {
+  const fetchSingleProduct = async (id: Pick<ProductType, 'id'>) => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       const data = await response.json();
@@ -49,11 +64,6 @@ const Products = () => {
   };
 
   useEffect(() => {
-    // if (!checkAuthenticate()) {
-    //   navigate('/login');
-    //   return;
-    // }
-
     fetchProducts();
   }, [fetchProducts]);
 
@@ -66,12 +76,14 @@ const Products = () => {
       </section>
       <section className={styles.products}>
         <Modal isVisible={visible} onModalClose={handleModalClose} product={product} />
-        {products.map((product, index) => (
+        {products.map((product) => (
           <div className={styles.product} key={product.id}>
             <img src={product.image} alt={product.title} width='125' />
             <h3>{product.title}</h3>
             <p>{product.price} PLN</p>
+
             <button onClick={() => handleAddToCart(product.id, product.title, product.price)}>Dodaj do koszyka</button>
+
             <button onClick={() => handleOpenModal(product.id)}>Więcej szczegółów...</button>
           </div>
         ))}

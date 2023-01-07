@@ -1,8 +1,15 @@
 import styles from './Modal.module.scss';
 import classnames from 'classnames';
 import ModalCloseIcon from '../../assets/img/close-icon.svg';
+import { ProductType } from '../../types/types';
 
-export default function Modal({ isVisible, onModalClose, product }) {
+type ModalProps = {
+  isVisible: boolean;
+  onModalClose: () => void;
+  product: ProductType;
+};
+
+export default function Modal({ isVisible, onModalClose, product }: ModalProps) {
   const { price, description, title, category, rating, image } = product;
 
   return (
