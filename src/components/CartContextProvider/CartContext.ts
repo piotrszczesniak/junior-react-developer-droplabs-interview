@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-// import { CartType } from '../../types/types';
+import { CartType } from '../../types/types';
 
-const CartContext = createContext(null);
+const CartContext = createContext<CartType[]>([]);
 
 export { CartContext };

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CartType } from '../../types/types';
+import { CartContext } from './CartContext';
 
 type CartContextProviderProps = {
   children: React.ReactNode;
@@ -7,8 +8,6 @@ type CartContextProviderProps = {
 
 const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cart, setCart] = useState<CartType[]>([]);
-
-  // const cartValue = { cart, setCart };
 
   const cartValue = useMemo(() => ({ cart, setCart }), [cart, setCart]);
 

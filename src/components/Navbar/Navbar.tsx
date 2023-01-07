@@ -8,7 +8,12 @@ import classNames from 'classnames';
 
 import styles from './Navbar.module.scss';
 
-const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }) => {
+type NavbarProps = {
+  onMobileMenuClick: () => void;
+  isMobileMenuOpen: boolean;
+};
+
+const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
   const { logout, isAuthenticated } = useContext(AuthenticationContext);
 
   return (

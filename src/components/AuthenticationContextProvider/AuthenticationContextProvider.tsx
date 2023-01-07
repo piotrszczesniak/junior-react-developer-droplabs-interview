@@ -3,7 +3,11 @@ import { AuthenticationContext } from './AuthenticationContext';
 import { checkAuthenticate } from '../../utilis/checkAuthenticate';
 import { CartContext } from '../CartContextProvider/CartContext';
 
-const AuthenticationContextProvider = ({ children }) => {
+type AuthenticationContextProviderProps = {
+  children: React.ReactNode;
+};
+
+const AuthenticationContextProvider = ({ children }: AuthenticationContextProviderProps) => {
   const [user, setUser] = useState(null);
   const { setCart } = useContext(CartContext);
 
@@ -19,7 +23,7 @@ const AuthenticationContextProvider = ({ children }) => {
     document.cookie = 'loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
   }, [setCart]);
 
-  let isAuthenticated;
+  let isAuthenticated: boolean;
 
   if (user && checkAuthenticate('loginToken')) {
     isAuthenticated = true;
