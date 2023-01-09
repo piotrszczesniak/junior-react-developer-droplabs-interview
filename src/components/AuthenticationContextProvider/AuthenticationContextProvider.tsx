@@ -8,7 +8,7 @@ type AuthenticationContextProviderProps = {
 };
 
 const AuthenticationContextProvider = ({ children }: AuthenticationContextProviderProps) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<[]>([]);
   const { setCart } = useContext(CartContext);
 
   const authenticate = useCallback((data) => {

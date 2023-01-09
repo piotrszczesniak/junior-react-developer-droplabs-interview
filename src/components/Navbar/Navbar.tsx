@@ -31,29 +31,29 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
         onClick={onMobileMenuClick}
       />
       <div className={classNames(styles['menu-wrapper'], { [styles['mobile']]: isMobileMenuOpen })}>
-        <Link className={styles.link} to='/' onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link className={styles.link} to='/' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           Strona główna
         </Link>
-        <Link className={styles.link} to='/products' onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link className={styles.link} to='/products' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           Produkty
         </Link>
-        <Link className={styles.link} to='/about' onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link className={styles.link} to='/about' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           O sklepie
         </Link>
-        <Link className={styles.link} to='/locations' onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link className={styles.link} to='/locations' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           Sklepy stacjonarne
         </Link>
-        <Link className={styles.link} to='/contact' onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link className={styles.link} to='/contact' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           Kontakt
         </Link>
-        <Link className={styles.link} onClick={isMobileMenuOpen && onMobileMenuClick}>
+        <Link to={''} className={styles.link} {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           <img src={PolishFlag} style={{ height: '1rem', border: '1px solid red' }} alt='language selector' />
         </Link>
       </div>
 
       {isAuthenticated && (
         <div className={styles['logout-wrapper']}>
-          <Link className={styles.link} onClick={logout}>
+          <Link to={''} className={styles.link} onClick={logout}>
             Wyloguj
           </Link>
         </div>
@@ -61,7 +61,7 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
 
       {!isAuthenticated && (
         <div className={styles['login-wrapper']}>
-          <Link className={styles.link} to='/login' onClick={isMobileMenuOpen && onMobileMenuClick}>
+          <Link className={styles.link} to='/login' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
             Zaloguj
           </Link>
         </div>

@@ -1,4 +1,4 @@
-export const checkAuthenticate = (cookieName) => {
+export const checkAuthenticate = (cookieName: string) => {
   return document.cookie
     .split('; ')
     .find((row) => row.startsWith(`${cookieName}=`))

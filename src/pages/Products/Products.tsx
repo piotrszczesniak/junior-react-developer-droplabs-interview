@@ -22,7 +22,7 @@ const Products = () => {
       count: 0,
     },
   });
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const { setCart } = useContext(CartContext);
   const { isAuthenticated } = useContext(AuthenticationContext);
@@ -37,7 +37,7 @@ const Products = () => {
     }
   }, []);
 
-  const handleAddToCart = (id: Pick<CartType, 'id'>, title: Pick<CartType, 'title'>, price: Pick<CartType, 'price'>) => {
+  const handleAddToCart = ({ id, title, price }: CartType) => {
     setCart((cart: CartType) => [...[cart], { id, title, price }]);
   };
 
@@ -76,15 +76,15 @@ const Products = () => {
       </section>
       <section className={styles.products}>
         <Modal isVisible={visible} onModalClose={handleModalClose} product={product} />
-        {products.map((product) => (
-          <div className={styles.product} key={product.id}>
-            <img src={product.image} alt={product.title} width='125' />
-            <h3>{product.title}</h3>
-            <p>{product.price} PLN</p>
+        {products.map(({ id, title, image, price }) => (
+          <div className={styles.product} key={id}>
+            <img src={image} alt={title} width='125' />
+            <h3>{title}</h3>
+            <p>{price} PLN</p>
 
-            <button onClick={() => handleAddToCart(product.id, product.title, product.price)}>Dodaj do koszyka</button>
+            <button onClick={() => handleAddToCart({ id, title, price })}>Dodaj do koszyka</button>
 
-            <button onClick={() => handleOpenModal(product.id)}>Więcej szczegółów...</button>
+            <button onClick={() => handleOpenModal({ id })}>Więcej szczegółów...</button>
           </div>
         ))}
       </section>
