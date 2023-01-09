@@ -1,5 +1,7 @@
 I have created this project using [Create React App](https://github.com/facebook/create-react-app).
 
+edit: I have just added TypeScript. Adding types in progress...
+
 I have used following npm packages:
 
 - react-router-dom / for navigation between views without page reload
