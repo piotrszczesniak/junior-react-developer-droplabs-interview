@@ -24,3 +24,15 @@ export type ProductType = {
 };
 
 export type CartType = Pick<ProductType, 'id' | 'title' | 'price'>;
+
+export type UserType = {
+  email: string;
+  password: string;
+};
+
+export type AuthenticationType = {
+  isAuthenticated: boolean;
+  user: UserType | null;
+  authenticate: (data: UserType) => void;
+  logout: () => void;
+};

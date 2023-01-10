@@ -26,6 +26,7 @@ const Login = () => {
         <form className={styles['login-form']} onSubmit={handleSubmit(authenticate)}>
           <p className={styles['error-msg']}>{errors.email?.message}</p>
           <input
+            type='text'
             {...register('email', {
               required: 'To pole jest obowiązkowe',
               pattern: {

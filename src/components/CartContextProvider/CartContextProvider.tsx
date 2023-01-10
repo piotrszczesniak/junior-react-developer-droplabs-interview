@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { CartType } from '../../types/types';
 import { CartContext } from './CartContext';
+import { CartType } from '../../types/types';
 
 type CartContextProviderProps = {
   children: React.ReactNode;

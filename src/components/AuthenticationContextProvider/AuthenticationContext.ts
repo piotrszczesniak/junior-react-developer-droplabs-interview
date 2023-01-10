@@ -1,15 +1,11 @@
 import { createContext } from 'react';
+import { AuthenticationType, UserType } from '../../types/types';
 
-type ContextType = {
-  isAuthenticated: boolean;
-  user: ;
-  authenticate: ;
-  logout: () => void;
-};
-
-const AuthenticationContext = createContext<ContextType>({
+const AuthenticationContext = createContext<AuthenticationType>({
   isAuthenticated: false,
-
+  user: null,
+  authenticate: (data: UserType) => {},
+  logout: () => {},
 });
 
 export { AuthenticationContext };

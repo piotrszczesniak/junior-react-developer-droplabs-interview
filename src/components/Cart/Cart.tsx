@@ -8,12 +8,12 @@ const Cart = () => {
   const { cart } = useContext(CartContext);
 
   const cartTotalPrice: Pick<ProductType, 'price'> = useMemo(
-    () => cart.reduce((total: number, { price }: Pick<ProductType, 'price'>) => total + price, 0),
+    () => cart.reduce((total: number, { price }: Pick<ProductType, 'price'>) => total + price.toFixed(2), 0),
     [cart]
   );
   return (
     <aside className={styles.cart}>
-      <div>{cartTotalPrice.toFixed(2)} PLN</div>
+      <div>{cartTotalPrice} PLN</div>
       <div className={styles['cart-wrapper']}>
         <span className={styles['cart-items']}>{cart.length}</span>
         <img style={{ height: '30px' }} src={ShoppingBag} alt='shopping bag' />

@@ -3,15 +3,17 @@ import { AuthenticationContext } from './AuthenticationContext';
 import { checkAuthenticate } from '../../utilis/checkAuthenticate';
 import { CartContext } from '../CartContextProvider/CartContext';
 
+import { UserType } from '../../types/types';
+
 type AuthenticationContextProviderProps = {
   children: React.ReactNode;
 };
 
 const AuthenticationContextProvider = ({ children }: AuthenticationContextProviderProps) => {
-  const [user, setUser] = useState<[]>([]);
+  const [user, setUser] = useState<UserType | null>(null);
   const { setCart } = useContext(CartContext);
 
-  const authenticate = useCallback((data) => {
+  const authenticate = useCallback((data: UserType) => {
     setUser(data);
     const loginToken = 'EDnrQ(vG}!7&*]P';
     document.cookie = `loginToken=${loginToken}`;
