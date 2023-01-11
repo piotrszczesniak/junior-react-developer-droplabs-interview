@@ -24,7 +24,9 @@ const Products = () => {
   });
   const [visible, setVisible] = useState<boolean>(false);
 
-  const { setCart } = useContext(CartContext);
+  // ! TODO: const { addItemToCart } = useContext(CartContext); --  refactor
+
+  const { setCartItems, cartItems } = useContext(CartContext);
   const { isAuthenticated } = useContext(AuthenticationContext);
 
   const fetchProducts = useCallback(async () => {
@@ -38,7 +40,8 @@ const Products = () => {
   }, []);
 
   const handleAddToCart = ({ id, title, price }: CartType) => {
-    setCart((cart: CartType) => [...[cart], { id, title, price }]);
+    // addItemToCart({ id, title, price });
+    setCartItems([...cartItems, { id, title, price }]);
   };
 
   const handleOpenModal = (id: Pick<CartType, 'id'>) => {

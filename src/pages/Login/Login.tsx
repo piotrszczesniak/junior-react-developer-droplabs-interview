@@ -1,15 +1,16 @@
 import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, FieldValues } from 'react-hook-form';
 import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import styles from './Login.module.scss';
 import { Navigate } from 'react-router-dom';
+import { UserType } from '../../types/types';
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<UserType>();
 
   const { authenticate, isAuthenticated } = useContext(AuthenticationContext);
 
@@ -23,7 +24,12 @@ const Login = () => {
         <h1>Logowanie</h1>
       </section>
       <section>
-        <form className={styles['login-form']} onSubmit={handleSubmit(authenticate)}>
+        <form
+          className={styles['login-form']}
+          onSubmit={handleSubmit((data: FieldValues) => {
+            authenticate({ email: data.email, password: data.password });
+          })}
+        >
           <p className={styles['error-msg']}>{errors.email?.message}</p>
           <input
             type='text'

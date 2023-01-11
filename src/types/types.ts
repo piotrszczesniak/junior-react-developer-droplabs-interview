@@ -1,15 +1,3 @@
-// export type ProductsType = {
-//   id: number;
-//   title: string;
-//   price: number;
-//   description: string;
-//   image: string;
-//   rating: {
-//     rate: string;
-//     count: number;
-//   };
-// };
-
 export type ProductType = {
   id: number;
   title: string;
@@ -35,4 +23,9 @@ export type AuthenticationType = {
   user: UserType | null;
   authenticate: (data: UserType) => void;
   logout: () => void;
+};
+
+export type CartContextType = {
+  cartItems: CartType[];
+  setCartItems: (data: CartType[]) => void;
 };

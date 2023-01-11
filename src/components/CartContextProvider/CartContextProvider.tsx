@@ -7,9 +7,10 @@ type CartContextProviderProps = {
 };
 
 const CartContextProvider = ({ children }: CartContextProviderProps) => {
-  const [cart, setCart] = useState<CartType[]>([]);
+  const [cartItems, setCartItems] = useState<CartType[]>([]);
 
-  const cartValue = useMemo(() => ({ cart, setCart }), [cart, setCart]);
+  // ! TODO: check if useMemo reduces renders at all
+  const cartValue = useMemo(() => ({ cartItems, setCartItems }), [cartItems, setCartItems]);
 
   return <CartContext.Provider value={cartValue}>{children}</CartContext.Provider>;
 };
