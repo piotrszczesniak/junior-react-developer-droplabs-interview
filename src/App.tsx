@@ -11,6 +11,7 @@ import { AuthenticationContextProvider } from './components/AuthenticationContex
 import { Navbar } from './components/Navbar/Navbar';
 import { Cart } from './components/Cart/Cart';
 import { useState } from 'react';
+import Order from './pages/Order/Order';
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -32,6 +33,7 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/locations' element={<Locations />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/order' element={<Order />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         </AuthenticationContextProvider>
