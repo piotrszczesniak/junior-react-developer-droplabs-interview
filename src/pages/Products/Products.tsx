@@ -18,7 +18,7 @@ const Products = () => {
     image: '',
     category: '',
     rating: {
-      rate: '',
+      rate: 0,
       count: 0,
     },
   });
@@ -43,7 +43,7 @@ const Products = () => {
     addItemToCart({ id, title, price });
   };
 
-  const handleOpenModal = (id: Pick<CartType, 'id'>) => {
+  const handleOpenModal = (id: CartType['id']) => {
     fetchSingleProduct(id);
     setVisible(true);
   };
@@ -52,11 +52,14 @@ const Products = () => {
     setVisible(false);
   };
 
-  const fetchSingleProduct = async (id: Pick<ProductType, 'id'>) => {
+  const fetchSingleProduct = async (id: CartType['id']) => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
+
+      if (response.ok) {
+        const data = await response.json();
+        setProduct(data);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +86,7 @@ const Products = () => {
 
             <button onClick={() => handleAddToCart({ id, title, price })}>Dodaj do koszyka</button>
 
-            <button onClick={() => handleOpenModal({ id })}>Więcej szczegółów...</button>
+            <button onClick={() => handleOpenModal(id)}>Więcej szczegółów...</button>
           </div>
         ))}
       </section>
