@@ -32,19 +32,19 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
       />
       <div className={classNames(styles['menu-wrapper'], { [styles['mobile']]: isMobileMenuOpen })}>
         <Link className={styles.link} to='/' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-          Strona główna
+          Home
         </Link>
         <Link className={styles.link} to='/products' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-          Produkty
+          Products
         </Link>
         <Link className={styles.link} to='/about' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-          O sklepie
+          About
         </Link>
         <Link className={styles.link} to='/locations' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-          Sklepy stacjonarne
+          Locations
         </Link>
         <Link className={styles.link} to='/contact' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-          Kontakt
+          Contact
         </Link>
         <Link to={''} className={styles.link} {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
           <img src={PolishFlag} style={{ height: '1rem', border: '1px solid red' }} alt='language selector' />
@@ -54,7 +54,7 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
       {isAuthenticated && (
         <div className={styles['logout-wrapper']}>
           <Link to={''} className={styles.link} onClick={logout}>
-            Wyloguj
+            Logout
           </Link>
         </div>
       )}
@@ -62,7 +62,7 @@ const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
       {!isAuthenticated && (
         <div className={styles['login-wrapper']}>
           <Link className={styles.link} to='/login' {...(isMobileMenuOpen && { onClick: onMobileMenuClick })}>
-            Zaloguj
+            Login
           </Link>
         </div>
       )}

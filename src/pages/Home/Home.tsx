@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main className={styles.home}>
       <section>
-        <h1>Strona główna</h1>
+        <h1>Home</h1>
       </section>
       <section className={styles.content}>
         <figcaption className={styles['banner-wrapper']}>

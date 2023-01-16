@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <main className='login-page'>
       <section>
-        <h1>Logowanie</h1>
+        <h1>Login</h1>
       </section>
       <section>
         <form
@@ -34,34 +34,34 @@ const Login = () => {
           <input
             type='text'
             {...register('email', {
-              required: 'To pole jest obowiązkowe',
+              required: 'This field is required',
               pattern: {
                 value: /^\S+@\S+$/,
-                message: 'Adres email musi zawierać w sobie symbol @',
+                message: 'E-mail address has to cointain @ character',
               },
               minLength: {
                 value: 3,
-                message: 'Wymagane są minimum 3 znaki',
+                message: 'Min 3 characters are required',
               },
             })}
-            placeholder='Twój adres email'
+            placeholder='Your e-mail address'
           />
           <p className={styles['error-msg']}>{errors.password?.message}</p>
           <input
             type='password'
             {...register('password', {
-              required: 'To pole jest obowiązkowe',
+              required: 'This field is required',
 
               minLength: {
                 value: 3,
-                message: 'Wymagane są minimum 3 znaki',
+                message: 'Min 3 characters are required',
               },
             })}
-            placeholder='Twoje hasło'
+            placeholder='Your password'
           />
-          <button type='submit'>Zaloguj</button>
+          <button type='submit'>Login</button>
 
-          {!isAuthenticated && <p className={styles['error-msg']}>Żeby przeglądać ofertę produktów zaloguj się proszę.</p>}
+          {!isAuthenticated && <p className={styles['error-msg']}>To see the products you need to login.</p>}
         </form>
       </section>
     </main>

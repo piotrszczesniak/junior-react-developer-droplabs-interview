@@ -25,13 +25,13 @@ export default function Modal({ isVisible, onModalClose, product }: ModalProps) 
           <strong>category:</strong> {category}
         </li>
         <li>
-          <strong>price:</strong> {price} PLN
+          <strong>price:</strong> {price} EUR
         </li>
         <li>
           <strong>rate: </strong> {rating?.rate} <strong>based on</strong> {rating?.count} reviews
         </li>
       </ul>
-      <button onClick={onModalClose}>Zamknij</button>
+      <button onClick={onModalClose}>Close</button>
     </div>
   );
 }

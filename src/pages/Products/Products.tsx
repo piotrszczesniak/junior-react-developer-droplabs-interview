@@ -2,7 +2,6 @@ import { useEffect, useState, useContext, useCallback } from 'react';
 import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
 import Modal from '../../components/Modal/Modal';
-// import { checkAuthenticate } from '../../utilis/checkAuthenticate';
 import styles from './Products.module.scss';
 import { Navigate } from 'react-router-dom';
 
@@ -23,9 +22,6 @@ const Products = () => {
     },
   });
   const [visible, setVisible] = useState<boolean>(false);
-
-  // // ! TODO: const { addItemToCart } = useContext(CartContext); --  refactor
-
   const { addItemToCart } = useContext(CartContext);
   const { isAuthenticated } = useContext(AuthenticationContext);
 
@@ -50,6 +46,18 @@ const Products = () => {
 
   const handleModalClose = () => {
     setVisible(false);
+    setProduct({
+      id: 1,
+      title: '',
+      price: 0,
+      description: '',
+      image: '',
+      category: '',
+      rating: {
+        rate: 0,
+        count: 0,
+      },
+    });
   };
 
   const fetchSingleProduct = async (id: CartType['id']) => {
@@ -74,7 +82,7 @@ const Products = () => {
   return (
     <main className='product-page'>
       <section>
-        <h1>Produkty</h1>
+        <h1>Products</h1>
       </section>
       <section className={styles.products}>
         <Modal isVisible={visible} onModalClose={handleModalClose} product={product} />
@@ -82,11 +90,11 @@ const Products = () => {
           <div className={styles.product} key={id}>
             <img src={image} alt={title} width='125' />
             <h3>{title}</h3>
-            <p>{price} PLN</p>
+            <p>{price} EUR</p>
 
-            <button onClick={() => handleAddToCart({ id, title, price })}>Dodaj do koszyka</button>
+            <button onClick={() => handleAddToCart({ id, title, price })}>Add to cart</button>
 
-            <button onClick={() => handleOpenModal(id)}>Więcej szczegółów...</button>
+            <button onClick={() => handleOpenModal(id)}>More details...</button>
           </div>
         ))}
       </section>

@@ -2,7 +2,7 @@ const Contact = () => {
   return (
     <main className='contact-page'>
       <section>
-        <h1>Kontakt</h1>
+        <h1>Contact</h1>
       </section>
     </main>
   );
