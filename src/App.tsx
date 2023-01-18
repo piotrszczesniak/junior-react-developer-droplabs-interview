@@ -10,8 +10,9 @@ import { CartContextProvider } from './components/CartContextProvider/CartContex
 import { AuthenticationContextProvider } from './components/AuthenticationContextProvider/AuthenticationContextProvider';
 import { Navbar } from './components/Navbar/Navbar';
 import { Cart } from './components/Cart/Cart';
-import { useState } from 'react';
 import Order from './pages/Order/Order';
+import { useState } from 'react';
+import { WithAuthentication } from './components/WithAuthentication/WithAuthentication';
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -28,7 +29,7 @@ function App() {
           <Cart />
           <Routes>
             <Route index element={<Home />} />
-            <Route path='/products' element={<Products />} />
+            <Route path='/products' element={<WithAuthentication component={Products} />} />
             <Route path='/login' element={<Login />} />
             <Route path='/about' element={<About />} />
             <Route path='/locations' element={<Locations />} />

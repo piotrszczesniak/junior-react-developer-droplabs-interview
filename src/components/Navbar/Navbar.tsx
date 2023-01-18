@@ -5,7 +5,6 @@ import PolishFlag from '../../assets/img/polish-flag.svg';
 import MobileMenuOpen from '../../assets/img/hamburger-menu.svg';
 import MobileMenuClose from '../../assets/img/close-icon.svg';
 import classNames from 'classnames';
-
 import styles from './Navbar.module.scss';
 
 type NavbarProps = {
@@ -15,6 +14,8 @@ type NavbarProps = {
 
 const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
   const { logout, isAuthenticated } = useContext(AuthenticationContext);
+
+  console.log('Navbar renders');
 
   return (
     <nav className={styles.navbar}>

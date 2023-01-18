@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
-import { AuthenticationContext } from '../../components/AuthenticationContextProvider/AuthenticationContext';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
 import Modal from '../../components/Modal/Modal';
 import styles from './Products.module.scss';
-import { Navigate } from 'react-router-dom';
 
 import { CartType, ProductType } from '../../types/types';
 
@@ -23,7 +21,6 @@ const Products = () => {
   });
   const [visible, setVisible] = useState<boolean>(false);
   const { addItemToCart } = useContext(CartContext);
-  const { isAuthenticated } = useContext(AuthenticationContext);
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -40,8 +37,8 @@ const Products = () => {
     }
   }, []);
 
-  const handleAddToCart = ({ id, title, price }: CartType) => {
-    addItemToCart({ id, title, price });
+  const handleAddToCart = (item: CartType) => {
+    addItemToCart(item);
   };
 
   const handleOpenModal = (id: CartType['id']) => {
@@ -66,6 +63,8 @@ const Products = () => {
   };
 
   const fetchSingleProduct = async (id: CartType['id']) => {
+    // TODO: talk about throw console.error();
+
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
 
@@ -82,7 +81,11 @@ const Products = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  if (!isAuthenticated) return <Navigate to='/login' />;
+  /** // TODO
+   *  ? when !isAuthenticated still response is consoled log
+   */
+
+  // if (!isAuthenticated) return <Navigate to='/login' />;
 
   return (
     <main className='product-page'>

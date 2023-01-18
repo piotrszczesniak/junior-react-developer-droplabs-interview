@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
 
+  console.log('Cart renders');
+
   const cartTotalPrice = useMemo(() => cartItems.reduce((total, { price }) => total + price, 0), [cartItems]);
 
   return (

@@ -26,7 +26,7 @@ export type AuthenticationType = {
 };
 
 export type CartContextType = {
+  clearCart: () => void;
   cartItems: CartType[];
-  setCartItems: (data: CartType[]) => void;
   addItemToCart: (data: CartType) => void;
 };

@@ -22,6 +22,9 @@ const Order = () => {
         <h1>Order</h1>
       </section>
       <section className={'products'}>
+        {/* // TODO: how to build tables
+          //! -- how to get same id products 
+        */}
         <table style={{ width: '100%', border: '1px dashed black' }}>
           <tr>
             <th>#</th>

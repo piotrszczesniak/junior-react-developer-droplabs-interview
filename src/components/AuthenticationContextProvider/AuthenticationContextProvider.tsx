@@ -11,7 +11,9 @@ type AuthenticationContextProviderProps = {
 
 const AuthenticationContextProvider = ({ children }: AuthenticationContextProviderProps) => {
   const [user, setUser] = useState<UserType | null>(null);
-  const { setCartItems } = useContext(CartContext);
+  const { clearCart } = useContext(CartContext);
+
+  console.log('AuthenticationContextProvider renders');
 
   const authenticate = useCallback((data: UserType) => {
     setUser(data);
@@ -21,9 +23,9 @@ const AuthenticationContextProvider = ({ children }: AuthenticationContextProvid
 
   const logout = useCallback(() => {
     setUser(null);
-    setCartItems([]);
+    clearCart();
     document.cookie = 'loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-  }, [setCartItems]);
+  }, [clearCart]);
 
   let isAuthenticated: boolean;
 
