@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { CartContext } from '../CartContextProvider/CartContext';
 import styles from './Cart.module.scss';
 import ShoppingBag from '../../assets/img/shopping-bag.svg';
@@ -9,14 +9,26 @@ const Cart = () => {
 
   console.log('Cart renders');
 
-  const cartTotalPrice = useMemo(() => cartItems.reduce((total, { price }) => total + price, 0), [cartItems]);
+  const cartTotals = cartItems.reduce(
+    (total, { price }) => {
+      total.totalItems += 1;
+      total.totalPrice += price;
+
+      return total;
+    },
+
+    {
+      totalPrice: 0,
+      totalItems: 0,
+    }
+  );
 
   return (
     <Link to='/order' className={styles['cart-link']}>
       <aside className={styles.cart}>
-        <div>{cartTotalPrice} EUR</div>
+        <div>{cartTotals.totalPrice} EUR</div>
         <div className={styles['cart-wrapper']}>
-          <span className={styles['cart-items']}>{cartItems.length}</span>
+          <span className={styles['cart-items']}>{cartTotals.totalItems}</span>
           <img style={{ height: '30px' }} src={ShoppingBag} alt='shopping bag' />
         </div>
       </aside>
