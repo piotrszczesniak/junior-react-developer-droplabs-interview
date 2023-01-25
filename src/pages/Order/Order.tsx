@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
+import { parseCartTotals } from '../../utilis/parseCartTotals';
 // import styles from 'Order.module.scss';
 
 const Order = () => {
   const { cartItems } = useContext(CartContext);
+
+  const cart = parseCartTotals(cartItems);
+  console.log(cart);
 
   if (cartItems.length === 0) {
     return (
@@ -22,29 +26,16 @@ const Order = () => {
         <h1>Order</h1>
       </section>
       <section className={'products'}>
-        {/* // TODO: how to build tables
-          //! -- how to get same id products 
-        */}
-        <table style={{ width: '100%', border: '1px dashed black' }}>
-          <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Id</th>
-            <th>Amount</th>
-            <th>Action</th>
-          </tr>
-          {cartItems.map((item, key) => (
-            <tr>
-              <td>{key}</td>
-              <td>{item.title}</td>
-              <td>{item.price}</td>
-              <td>{item.id}</td>
-              <td>items count</td>
-              <td>Remove</td>
-            </tr>
-          ))}
-        </table>
+        <ol>
+          {cart.map((item) => {
+            return (
+              <li key={item.id}>
+                {item.items[0].title} | {item.amount} x {item.items[0].price} = {item.total}
+                <button> - </button> {item.amount} <button> + </button>
+              </li>
+            );
+          })}
+        </ol>
       </section>
     </main>
   );

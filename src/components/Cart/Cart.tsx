@@ -7,28 +7,16 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const { cartItems } = useContext(CartContext);
 
-  console.log('Cart renders');
+  // ! TODO: Array MDN <--
 
-  const cartTotals = cartItems.reduce(
-    (total, { price }) => {
-      total.totalItems += 1;
-      total.totalPrice += price;
-
-      return total;
-    },
-
-    {
-      totalPrice: 0,
-      totalItems: 0,
-    }
-  );
+  const cartTotalPrice = Number(cartItems.reduce((accu, currItem) => accu + currItem.price, 0).toFixed(2));
 
   return (
     <Link to='/order' className={styles['cart-link']}>
       <aside className={styles.cart}>
-        <div>{cartTotals.totalPrice} EUR</div>
+        <div>{cartTotalPrice} EUR</div>
         <div className={styles['cart-wrapper']}>
-          <span className={styles['cart-items']}>{cartTotals.totalItems}</span>
+          <span className={styles['cart-items']}>{cartItems.length}</span>
           <img style={{ height: '30px' }} src={ShoppingBag} alt='shopping bag' />
         </div>
       </aside>

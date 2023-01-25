@@ -13,6 +13,38 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCartItems([]);
   }, []);
 
+  // const increaseItemsAmount = (cartItem: CartType) => {
+  //   setCartItems((currentItems) => {
+  //     if (currentItems.find((item) => item.id === cartItem.id) == null) {
+  //       return [...currentItems, { it: cartItem.id, amount: 1 }];
+  //     } else {
+  //       return currentItems.map((item) => {
+  //         if (item.id === cartItem.id) {
+  //           return { ...item, amount: cartItem.amount + 1 };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //     }
+  //   });
+  // };
+
+  // const decreaseItemsAmount = (cartItem: CartType) => {
+  //   setCartItems((currentItems) => {
+  //     if (currentItems.find((item) => item.id === cartItem.id)?.amount === 1) {
+  //       return currentItems.filter((item) => item.id !== cartItem.id);
+  //     } else {
+  //       return currentItems.map((item) => {
+  //         if (item.id === cartItem.id) {
+  //           return { ...item, amount: cartItem.amount - 1 };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //     }
+  //   });
+  // };
+
   const addItemToCart = useCallback((newCartItem: CartType) => {
     setCartItems((state) => [...state, newCartItem]);
   }, []);
