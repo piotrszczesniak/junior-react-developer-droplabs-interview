@@ -1,6 +1,10 @@
-I have created this project using [Create React App](https://github.com/facebook/create-react-app).
+I have created this project using [Create React App](https://github.com/facebook/create-react-app). Once MVP was ready, I added TypeScript.
 
-edit: I have just added TypeScript. Adding types in progress...
+...project under development. Features I plan to add:
+
+- contact form + sendGrid API
+- payment gate + Stripe API
+- keeping cart content in localStorage
 
 I have used following npm packages:
 
