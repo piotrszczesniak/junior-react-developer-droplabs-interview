@@ -19,6 +19,7 @@
     &-details {
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -28,5 +29,9 @@
     padding-top: 1rem;
     font-weight: 500;
     font-size: 1.25rem;
+  }
+
+  &-button {
+    padding: 0.25rem 0.5rem;
   }
 }

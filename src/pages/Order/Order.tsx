@@ -1,22 +1,22 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
-// import { CartType } from '../../types/types';
+import { CartType } from '../../types/types';
 import { parseCartTotals } from '../../utilis/parseCartTotals';
 import styles from './Order.module.scss';
 
 const Order = () => {
-  const {
-    cartItems,
-    cartTotalPrice,
-    // addItemToCart
-  } = useContext(CartContext);
+  const { cartItems, cartTotalPrice, addItemToCart } = useContext(CartContext);
 
   const cart = parseCartTotals(cartItems);
   console.log(cart);
 
-  // const increaseAmount = () => {
-  //   console.log('increase');
-  // };
+  const increaseAmount = (item: CartType) => {
+    addItemToCart(item);
+  };
+
+  const decreaseAmount = () => {
+    console.log('decrease');
+  };
 
   // const handleAddToCart = (item: CartType) => {
   //   addItemToCart(item);
@@ -26,7 +26,7 @@ const Order = () => {
     return (
       <main className='order-page'>
         <section>
-          <h1>Order</h1>
+          <h1>Order details</h1>
         </section>
         <p>You have no products in your basket...</p>
       </main>
@@ -41,15 +41,31 @@ const Order = () => {
       <section className={styles['order']}>
         <ol className={styles['order-details']}>
           {cart.map((item) => {
+            const {
+              id: itemId,
+              total,
+              amount,
+              items: [{ id, title, price }],
+            } = item;
+
             return (
-              <li className={styles['order-line']} key={item.id}>
+              <li className={styles['order-line']} key={itemId}>
                 <div className={styles['order-line-details']}>
-                  <span>{item.items[0].title}</span> {item.amount} x {item.items[0].price} = {item.total} EUR
+                  <div>
+                    <span>{title}</span>
+                  </div>
+                  <div>
+                    <button className={styles['order-button']} onClick={decreaseAmount}>
+                      -
+                    </button>
+                    <span>{amount}</span>
+                    <button className={styles['order-button']} onClick={() => increaseAmount({ id, title, price })}>
+                      +
+                    </button>
+                    x <span>{price}</span> = <span>{total}</span>
+                    <span>EUR</span>
+                  </div>
                 </div>
-                {/* 
-                  // TODO: if i use addItemToCart i am getting type errors when I pass as an arg: {item.id, item.items[0].price, item.items[0].title}
-                */}
-                {/* <button> - </button> {item.amount} <button onClick={() => handleAddToCart({item.id, item.items[0].price, item.items[0].title})}> + </button> */}
               </li>
             );
           })}
