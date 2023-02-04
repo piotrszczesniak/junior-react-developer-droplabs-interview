@@ -17,7 +17,12 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCartItems((state) => [...state, newCartItem]);
   }, []);
 
-  const cartValue = useMemo(() => ({ cartItems, clearCart, addItemToCart }), [cartItems, clearCart, addItemToCart]);
+  const cartTotalPrice = Number(cartItems.reduce((accu, currItem) => accu + currItem.price, 0).toFixed(2));
+
+  const cartValue = useMemo(
+    () => ({ cartItems, clearCart, addItemToCart, cartTotalPrice }),
+    [cartItems, clearCart, addItemToCart, cartTotalPrice]
+  );
 
   return <CartContext.Provider value={cartValue}>{children}</CartContext.Provider>;
 };

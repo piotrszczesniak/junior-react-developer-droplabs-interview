@@ -1,0 +1,32 @@
+.order {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 1rem 1rem 1rem 2rem;
+
+  &-line {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px dashed lightgrey;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px dotted red;
+      margin-bottom: 0.25rem;
+    }
+
+    &-details {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &-total {
+    text-align: right;
+    border-top: 1px dotted red;
+    padding-top: 1rem;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+}

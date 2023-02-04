@@ -5,11 +5,9 @@ import ShoppingBag from '../../assets/img/shopping-bag.svg';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartTotalPrice } = useContext(CartContext);
 
   // ! TODO: Array MDN <--
-
-  const cartTotalPrice = Number(cartItems.reduce((accu, currItem) => accu + currItem.price, 0).toFixed(2));
 
   return (
     <Link to='/order' className={styles['cart-link']}>
