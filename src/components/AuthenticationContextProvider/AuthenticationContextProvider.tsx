@@ -13,8 +13,6 @@ const AuthenticationContextProvider = ({ children }: AuthenticationContextProvid
   const [user, setUser] = useState<UserType | null>(null);
   const { clearCart } = useContext(CartContext);
 
-  console.log('AuthenticationContextProvider renders');
-
   const authenticate = useCallback((data: UserType) => {
     setUser(data);
     const loginToken = 'EDnrQ(vG}!7&*]P';

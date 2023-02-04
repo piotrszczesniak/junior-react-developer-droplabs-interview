@@ -15,8 +15,6 @@ type NavbarProps = {
 const Navbar = ({ onMobileMenuClick, isMobileMenuOpen }: NavbarProps) => {
   const { logout, isAuthenticated } = useContext(AuthenticationContext);
 
-  console.log('Navbar renders');
-
   return (
     <nav className={styles.navbar}>
       <div className={styles['logo-wrapper']}>
