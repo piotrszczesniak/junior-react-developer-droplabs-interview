@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../../components/CartContextProvider/CartContext';
 import { CartType } from '../../types/types';
 import { parseCartTotals } from '../../utilis/parseCartTotals';
@@ -20,7 +20,13 @@ const Order = () => {
 
   // const handleAddToCart = (item: CartType) => {
   //   addItemToCart(item);
-  // };
+  /**
+   * ! TODO
+   * * pass an id of the product to be removed
+   * * check the product amount
+   * * if amount > 1 --> amount -1
+   * * if amount === 1, --> remove product from the cartItems array
+   */
 
   if (cartItems.length === 0) {
     return (
