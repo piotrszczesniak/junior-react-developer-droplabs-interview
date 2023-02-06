@@ -13,6 +13,13 @@ export type ProductType = {
 
 export type CartType = Pick<ProductType, 'id' | 'title' | 'price'>;
 
+export type OrderCartType = {
+  id: number;
+  items: CartType[];
+  amount: number;
+  total: number;
+};
+
 export type UserType = {
   email: string;
   password: string;

@@ -1,7 +1,7 @@
-import { CartType } from '../types/types';
+import { CartType, OrderCartType } from '../types/types';
 
 export function parseCartTotals(cart: CartType[]) {
-  const cartTotals: { id: number; items: CartType[]; amount: number; total: number }[] = [];
+  const cartTotals: OrderCartType[] = [];
 
   cart.forEach((item) => {
     const index = cartTotals.findIndex((total) => total.id === item.id);

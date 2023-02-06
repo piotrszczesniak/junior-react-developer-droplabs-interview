@@ -8,25 +8,27 @@ const Order = () => {
   const { cartItems, cartTotalPrice, addItemToCart } = useContext(CartContext);
 
   const cart = parseCartTotals(cartItems);
-  console.log(cart);
+  // console.log(cart);
 
   const increaseAmount = (item: CartType) => {
     addItemToCart(item);
   };
 
-  const decreaseAmount = () => {
-    console.log('decrease');
+  const removeItemFromCart = (item: CartType) => {
+    /**
+     * ! TODO
+     * // * pass an id of the product to be removed
+     * * check if the product id exists in the object
+     * * check the product amount
+     * * if amount > 1 --> amount -1
+     * * if amount === 1, --> remove product from the cartItems array
+     */
+    console.log(item);
   };
 
-  // const handleAddToCart = (item: CartType) => {
-  //   addItemToCart(item);
-  /**
-   * ! TODO
-   * * pass an id of the product to be removed
-   * * check the product amount
-   * * if amount > 1 --> amount -1
-   * * if amount === 1, --> remove product from the cartItems array
-   */
+  const decreaseAmount = (item: CartType) => {
+    removeItemFromCart(item);
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -61,7 +63,7 @@ const Order = () => {
                     <span>{title}</span>
                   </div>
                   <div>
-                    <button className={styles['order-button']} onClick={decreaseAmount}>
+                    <button className={styles['order-button']} onClick={() => decreaseAmount({ id, title, price })}>
                       -
                     </button>
                     <span>{amount}</span>
