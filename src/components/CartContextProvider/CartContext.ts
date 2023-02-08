@@ -6,6 +6,7 @@ const CartContext = createContext<CartContextType>({
   clearCart: () => {},
   addItemToCart: () => {},
   cartTotalPrice: 0,
+  removeItemFromCart: () => {},
 });
 
 export { CartContext };

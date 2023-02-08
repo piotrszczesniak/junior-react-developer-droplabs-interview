@@ -17,11 +17,26 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCartItems((state) => [...state, newCartItem]);
   }, []);
 
+  const removeItemFromCart = useCallback(
+    (itemToRemoved: CartType) => {
+      const { id } = itemToRemoved;
+      const index = cartItems.findIndex((element) => element.id === id);
+      if (index !== -1) {
+        setCartItems((state) => {
+          const tempArray = [...state];
+          tempArray.splice(index, 1);
+          return tempArray;
+        });
+      }
+    },
+    [cartItems]
+  );
+
   const cartTotalPrice = Number(cartItems.reduce((accu, currItem) => accu + currItem.price, 0).toFixed(2));
 
   const cartValue = useMemo(
-    () => ({ cartItems, clearCart, addItemToCart, cartTotalPrice }),
-    [cartItems, clearCart, addItemToCart, cartTotalPrice]
+    () => ({ cartItems, clearCart, addItemToCart, cartTotalPrice, removeItemFromCart }),
+    [cartItems, clearCart, addItemToCart, cartTotalPrice, removeItemFromCart]
   );
 
   return <CartContext.Provider value={cartValue}>{children}</CartContext.Provider>;

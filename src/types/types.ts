@@ -37,4 +37,5 @@ export type CartContextType = {
   cartItems: CartType[];
   addItemToCart: (data: CartType) => void;
   cartTotalPrice: number;
+  removeItemFromCart: (data: CartType) => void;
 };

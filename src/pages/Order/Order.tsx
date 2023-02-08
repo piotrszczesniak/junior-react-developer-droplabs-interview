@@ -5,25 +5,12 @@ import { parseCartTotals } from '../../utilis/parseCartTotals';
 import styles from './Order.module.scss';
 
 const Order = () => {
-  const { cartItems, cartTotalPrice, addItemToCart } = useContext(CartContext);
+  const { cartItems, cartTotalPrice, addItemToCart, removeItemFromCart } = useContext(CartContext);
 
   const cart = parseCartTotals(cartItems);
-  // console.log(cart);
 
   const increaseAmount = (item: CartType) => {
     addItemToCart(item);
-  };
-
-  const removeItemFromCart = (item: CartType) => {
-    /**
-     * ! TODO
-     * // * pass an id of the product to be removed
-     * * check if the product id exists in the object
-     * * check the product amount
-     * * if amount > 1 --> amount -1
-     * * if amount === 1, --> remove product from the cartItems array
-     */
-    console.log(item);
   };
 
   const decreaseAmount = (item: CartType) => {
