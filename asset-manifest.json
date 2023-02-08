@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mini-shop-react/static/css/main.f18b1696.css",
-    "main.js": "/mini-shop-react/static/js/main.cdb74350.js",
+    "main.js": "/mini-shop-react/static/js/main.9ed1b1b7.js",
     "static/js/787.3c244f88.chunk.js": "/mini-shop-react/static/js/787.3c244f88.chunk.js",
     "static/media/lorem-ipsum-img.jpeg": "/mini-shop-react/static/media/lorem-ipsum-img.e4a8c53af1a2bb6151ae.jpeg",
     "index.html": "/mini-shop-react/index.html",
@@ -10,11 +10,11 @@
     "static/media/shopping-bag.svg": "/mini-shop-react/static/media/shopping-bag.9715b7a4f7df94b4560b3623cdb75978.svg",
     "static/media/polish-flag.svg": "/mini-shop-react/static/media/polish-flag.4da5f094c814970e3a2878f68eb33c40.svg",
     "main.f18b1696.css.map": "/mini-shop-react/static/css/main.f18b1696.css.map",
-    "main.cdb74350.js.map": "/mini-shop-react/static/js/main.cdb74350.js.map",
+    "main.9ed1b1b7.js.map": "/mini-shop-react/static/js/main.9ed1b1b7.js.map",
     "787.3c244f88.chunk.js.map": "/mini-shop-react/static/js/787.3c244f88.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f18b1696.css",
-    "static/js/main.cdb74350.js"
+    "static/js/main.9ed1b1b7.js"
   ]
 }
